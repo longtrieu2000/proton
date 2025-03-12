@@ -1,14 +1,22 @@
 #!/bin/bash
+cd /tmp
+wget https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%2B11/OpenJDK17U-jdk_x64_linux_hotspot_17.0.13_11.tar.gz -O temurin17.tar.gz
+sudo mkdir -p /opt/temurin
+sudo tar -xvzf temurin17.tar.gz -C /opt/temurin --strip-components=1
+echo 'export JAVA_HOME=/opt/temurin' | sudo tee -a /etc/profile.d/jdk.sh
+echo 'export PATH=$JAVA_HOME/bin:$PATH' | sudo tee -a /etc/profile.d/jdk.sh
+sudo chmod +x /etc/profile.d/jdk.sh
+source /etc/profile.d/jdk.sh
+####chon phien ban java #####
+#sudo update-alternatives --install /usr/bin/java java /opt/temurin/bin/java 1
+#sudo update-alternatives --install /usr/bin/javac javac /opt/temurin/bin/javac 1
+#sudo update-alternatives --config java
 
-sudo rpm --import https://yum.corretto.aws/corretto.key
-sudo curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
-
-sudo yum install -y java-17-amazon-corretto-devel wget -y
 
 mkdir -p /opt/nexus/   
 mkdir -p /tmp/nexus/                           
 cd /tmp/nexus/
-NEXUSURL="https://download.sonatype.com/nexus/3/latest-unix.tar.gz"
+NEXUSURL="https://download.sonatype.com/nexus/3/nexus-unix-aarch64-3.78.1-02.tar.gz"
 wget $NEXUSURL -O nexus.tar.gz
 sleep 10
 EXTOUT=`tar xzvf nexus.tar.gz`
