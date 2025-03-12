@@ -16,7 +16,7 @@ source /etc/profile.d/jdk.sh
 mkdir -p /opt/nexus/   
 mkdir -p /tmp/nexus/                           
 cd /tmp/nexus/
-NEXUSURL="https://download.sonatype.com/nexus/3/nexus-unix-aarch64-3.78.1-02.tar.gz"
+NEXUSURL="https://download.sonatype.com/nexus/3/nexus-unix-x86-64-3.78.1-02.tar.gz"
 wget $NEXUSURL -O nexus.tar.gz
 sleep 10
 EXTOUT=`tar xzvf nexus.tar.gz`
